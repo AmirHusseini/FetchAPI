@@ -1,13 +1,13 @@
 const url = 'https://hockeyplayers.systementor.se/amir/player';
 const deleteIcon = "<i class='bx bx-folder-minus bx-sm important'></i>";  
 const editIcon = "<i class='bx bx-edit bx-sm important'></i>";
-const sectionList = document.getElementById('sectionList')
-const sectionNew = document.getElementById('sectionNew')
-const sectionEdit = document.getElementById('sectionEdit')
+const sectionList = document.getElementById('sectionList');
+const sectionNew = document.getElementById('sectionNew');
+const sectionEdit = document.getElementById('sectionEdit');
 const AddPlayerForm = document.getElementById('addform');
 const cancelbtn = document.getElementById('cancelButton');
 const cancelbt = document.getElementById('cancelButto');
-const listLink = document.getElementById('listLink')
+const listLink = document.getElementById('listLink');
 
 let CurrentPlayerId;
 
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async function(){
   
   showSection('sectionList');  
 
-  fetch(url)
+  const result = await fetch(url)
     .then(response => {return response.json()})
     .then(function (data){
         const tbody = document.getElementById("tbody");                         
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async function(){
         }
     });
       
-})
+});
 
 //Sortera tabel 
 function sortTable(n) {
@@ -158,14 +158,14 @@ const UpdateForm = document.getElementById("upform");
 if (UpdateForm) {
   UpdateForm.addEventListener("submit", async function (event){
     
-    id = CurrentPlayerId;
+    let id = CurrentPlayerId;
     event.preventDefault();
     
     const data = new FormData(event.currentTarget);
     const plaindata= Object.fromEntries(data.entries());
     const dataAsJson = JSON.stringify(plaindata);
 
-    fetch("https://hockeyplayers.systementor.se/amir/player/"+ id, {
+    const result = await fetch("https://hockeyplayers.systementor.se/amir/player/"+ id, {
         headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
@@ -199,7 +199,7 @@ function idplayerload(id){
         }                                  
       }       
      
-  }).then(data => {return CurrentPlayerId })
+  }).then(response => {return CurrentPlayerId })
   .catch((error) => console.log(error));
 }
 
