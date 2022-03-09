@@ -217,9 +217,10 @@ function showSection(sectionsId){
       sectionEdit.style.display = "none";
   }
   else if(sectionsId == 'sectionEdit'){
-      sectionList.style.display = "none";
+      sectionList.style.display = "block";
       sectionNew.style.display = "none";
       sectionEdit.style.display = "block";
+      sectionList.style.opacity = 0.15;
   }
 }
 
